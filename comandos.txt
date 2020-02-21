@@ -1,0 +1,11 @@
+git init				-> iniciar repositório
+git remote add origin https://github.com/kyusamin/poo_2020_1.git
+git clone				-> clonar repositório
+git add					-> marca o que quero salvar
+git commit -m "tutorial git"		-> salvar tudo que foi marcado
+git push origin master			-> envia os dados
+gill pull origin master			-> puxar os dados
+
+cd nome do diretório			-> ir para o diretório especificado
+cd..					->
+ls					-> mostra o que tem no diretório
