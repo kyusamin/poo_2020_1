@@ -1,4 +1,4 @@
-package kyusteste;
+package gato;
 public class Gato {
     String nome;
     int vidas;
@@ -15,7 +15,7 @@ public class Gato {
         this.vidas -= 1;
     }
     
-    void viver(){
+    void biscoitinho(){
         if(this.food > 0)
             this.vidas+=1;
     }
@@ -29,7 +29,7 @@ public class Gato {
         for(int i = 0; i < 10; i+=1){
             gatu.miar();
             gatu.fingirDeMorto();
-            gatu.viver();
+            gatu.biscoitinho();
         }
     }
 }
