@@ -8,6 +8,7 @@ public class Moto {
         float gasolina = 0;
         float maxGasolina = 16;
         float km = 0;
+        int capacete = 0;
         
 	void subir(int qtd) {
             if(qtd < 0){
@@ -17,7 +18,8 @@ public class Moto {
                 System.out.println("Não da pra subir!");
                 return;
             }
-		this.nPessoas += qtd;
+                this.nPessoas += qtd;
+                this.capacete += qtd;
                 System.out.println("Montado(os)!");
 	}
         
@@ -30,6 +32,7 @@ public class Moto {
                 return;
             }       
                 this.nPessoas -= qtd;
+                this.capacete -= qtd;
                 System.out.println("Descido(os)!");
         }
 	
@@ -57,7 +60,7 @@ public class Moto {
         }
         
 	void mostrar() {
-		System.out.println("Número de pessoas na moto: " + this.nPessoas);
+		System.out.println("Número de pessoas na moto: " + this.nPessoas + ", e " + this.capacete + " estão usando capacete");
                 System.out.println("O tanque contém: " + this.gasolina + " litros de gasolina.");
                 System.out.println("Km rodados: " + this.km);
 	}
