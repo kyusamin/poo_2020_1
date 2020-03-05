@@ -50,7 +50,7 @@ public class Moto {
         void pilotar(float qtd){
             if(this.nPessoas == 0){
                 System.out.println("Não há ninguem para pilotar a moto.");
-            }else if(this.gasolina < (qtd/10)){
+            }else if(this.gasolina < (qtd/40)){
                 System.out.println("Gasolina insuficiente para realizar o trajeto!");
             }else{
                 this.gasolina = this.gasolina - qtd / 40;
