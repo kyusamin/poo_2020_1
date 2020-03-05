@@ -9,3 +9,15 @@ gill pull origin master			-> puxar os dados
 cd nome do diretório			-> ir para o diretório especificado
 cd..					->
 ls					-> mostra o que tem no diretório
+
+
+//		System.out.print("[ ");
+//		for(int i = 0; i < ui.length; i++)
+//			System.out.print(ui[i] + ", ");
+//		System.out.println("]");
+		
+		
+//		System.out.println("Digite seu nome e seu peso");
+//		String nome = scanner.next();
+//		float peso = scanner.nextFloat();
+//		System.out.println("Nome: " + nome + " Peso: " + peso);
