@@ -8,7 +8,8 @@ public class Moto {
         float gasolina = 0;
         float maxGasolina = 16;
         float km = 0;
-        int capacete = 0;
+        int capacete;
+        int marcha;
         
 	void subir(int qtd) {
             if(qtd < 0){
@@ -47,15 +48,30 @@ public class Moto {
                 return;
         }
 		                
+        void pisca(String comando){
+            if("direito".equals(comando)){
+                System.out.println("Pisca direito ligado!");
+            } else if("esquerdo".equals(comando)){
+                System.out.println("Pisca esquerdo ligado!");
+            }
+        }
+        
         void pilotar(float qtd){
             if(this.nPessoas == 0){
                 System.out.println("Não há ninguem para pilotar a moto.");
             }else if(this.gasolina < (qtd/40)){
                 System.out.println("Gasolina insuficiente para realizar o trajeto!");
             }else{
-                this.gasolina = this.gasolina - qtd / 40;
-                this.km += qtd;
-                System.out.println("Trajeto realizado com sucesso!");
+                if(this.marcha == 0){
+                    System.out.println("Moto está no neutro, passei para a 1º marcha");
+                    this.marcha = 1;
+                } else if(this.marcha == 1){
+                    this.gasolina = this.gasolina - qtd / 40;
+                    this.km += qtd;
+                    System.out.println("Trajeto realizado com sucesso!");
+                } else{
+                    System.out.println("Marcha errada, não é possível sair do canto!");
+                }
             }
         }
         
@@ -87,8 +103,11 @@ public class Moto {
                         }else if(ui[0].equals("pilotar")){
                             int qtd = Integer.parseInt(ui[1]);
                             moto.pilotar(qtd);
+                        }else if(ui[0].equals("pisca")){
+                            String comando = ui[1];
+                            moto.pisca(comando);
                         }else {
-				System.out.println("Comando invalido");
+                            System.out.println("Comando invalido");
 			}
 		}
 		scanner.close();
