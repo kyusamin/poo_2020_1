@@ -1,19 +1,23 @@
 package motoca;
 
+import java.util.Scanner;
+
 class Pessoa {
     String nome;
     int idade;
 
-    public Pessoa(String nome, int idade){ //nao eh metodo, eh invocado automaticaticamente na criacao
+    public Pessoa(String nome, int idade){ //não é metodo, é invocado automaticaticamente na criação
         this.nome = nome;
         this.idade = idade;
     }
 }
 
 public class Motoca {
-	Pessoa pessoa; //agregacao
+	Pessoa pessoa; //agregação
+        int potencia;
 
-	public Motoca(){
+	public Motoca(int potencia){
+            this.potencia = potencia;
 	}
 	
 	void embarcar(Pessoa pessoa) {
@@ -31,7 +35,7 @@ public class Motoca {
                     System.out.println("Não há ninguem na moto");
                 }
 	}
-
+        
 	void dirigir(){
 		if(this.pessoa == null){
                     System.out.println("Não há ninguem na moto");
@@ -40,11 +44,43 @@ public class Motoca {
                 } else if(this.pessoa.idade > 10){
                     System.out.println("Muito velho pra andar de moto");
                 } else{
-                    System.out.println(this.pessoa.nome + ": Vrum Vrum Vrum...");
+                    System.out.println(this.pessoa.nome + ":" + cortarGiro());
                 }
 	}
 
-
+        String cortarGiro(){
+            String saida = "";
+            for(int i = 0; i < this.potencia; i++)
+                saida+="vrum!";
+            return saida;
+        }
+        
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		Motoca motoca  = new Motoca(1);
+		while(true) {
+			String line = scanner.nextLine();
+			String ui[] = line.split(" ");
+			if(ui[0].equals("sair")) {
+				break;
+			}else if(ui[0].equals("iniciar")) { //potencia
+                            Pessoa pessoa = motoca.pessoa;
+                            motoca = new Motoca(Integer.parseInt(ui[1]));
+                            motoca.embarcar(pessoa);
+			}else if(ui[0].equals("embarcar")) { //nome  idade
+                            motoca.embarcar(new Pessoa(ui[1],Integer.parseInt(ui[2])));
+			}else if(ui[0].equals("desembarcar")) {
+                            motoca.desembarcar();
+			}else if(ui[0].equals("dirigir")) {
+                            motoca.dirigir();
+			}else{
+                            System.out.println("Comando invalido");
+			}
+		}
+		scanner.close();
+	}
+        
+        /*        
 	public static void main(String[] args) {
 		Pessoa vitu = new Pessoa("Victor", 19);
 		Motoca moto = new Motoca();
@@ -52,36 +88,13 @@ public class Motoca {
 		moto.dirigir();
 		moto.desembarcar();
 
-/*
                 Motoca moto2 = new Motoca();
 		moto2.embarcar(vitu);
 		moto2.dirigir();
 		moto2.desembarcar();
 
 		System.out.println(vitu.nome);
-*/
-	}
-/*
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		Motoca motoca  = new Motoca();
-		while(true) {
-			String line = scanner.nextLine();
-			String ui[] = line.split(" ");
-			if(ui[0].equals("end")) {
-				break;
-			}else if(ui[0].equals("embarcar")) { //nome  idade
-				int idade = Integer.parseInt(ui[2]);
-				motoca.embarcar(ui[1], idade);
-			}else if(ui[0].equals("desembarcar")) {
-				motoca.desembarcar();
-			}else if(ui[0].equals("dirigir")) {
-				motoca.dirigir();
-			}else {
-				System.out.println("Comando invalido");
-			}
-		}
-		scanner.close();
+
 	}
 */
 }
