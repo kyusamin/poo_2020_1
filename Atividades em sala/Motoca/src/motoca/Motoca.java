@@ -15,6 +15,7 @@ class Pessoa {
 public class Motoca {
 	Pessoa pessoa; //agregação
         int potencia;
+        int tempo;
 
 	public Motoca(int potencia){
             this.potencia = potencia;
@@ -23,6 +24,7 @@ public class Motoca {
 	void embarcar(Pessoa pessoa) {
 		if(this.pessoa == null){
                     this.pessoa = pessoa;
+                    this.tempo = 0;
                 }else{
                     System.out.println("Já tem gente na motoca");
                 }
@@ -36,18 +38,31 @@ public class Motoca {
                 }
 	}
         
-	void dirigir(){
-		if(this.pessoa == null){
-                    System.out.println("Não há ninguem na moto");
-                } else if(this.pessoa.idade < 2){
-                    System.out.println("Muito novo pra andar de moto");
-                } else if(this.pessoa.idade > 10){
-                    System.out.println("Muito velho pra andar de moto");
-                } else{
+        void dirigir(int tempo){
+            if(this.pessoa == null){
+                System.out.println("Não há ninguem na moto.");
+            }else if(this.pessoa.idade < 2){
+                System.out.println("Muito novo pra andar de moto");
+            }else if(this.pessoa.idade > 10){
+                System.out.println("Muito velho pra andar de moto");
+            }else{
+                if(this.tempo <= 0){
+                    System.out.println("Seu tempo está zerado, compre tempo!");
+                }else if(this.tempo >= tempo) { 
                     System.out.println(this.pessoa.nome + ":" + cortarGiro());
-                }
-	}
+                    this.tempo-=tempo;
+                    System.out.println("Tempo restante: " + this.tempo);
+                }else{
+                    System.out.println("Tempo insuficiente para andar, compre mais tempo");
+                } 
+            }
+        }
 
+        void comprar(int tempo){
+            this.tempo+=tempo;
+            System.out.println("Tempo comprado com sucesso!");
+        }
+        
         String cortarGiro(){
             String saida = "";
             for(int i = 0; i < this.potencia; i++)
@@ -72,7 +87,9 @@ public class Motoca {
 			}else if(ui[0].equals("desembarcar")) {
                             motoca.desembarcar();
 			}else if(ui[0].equals("dirigir")) {
-                            motoca.dirigir();
+                            motoca.dirigir(Integer.parseInt(ui[1]));
+			}else if(ui[0].equals("comprar")) {
+                            motoca.comprar(Integer.parseInt(ui[1]));
 			}else{
                             System.out.println("Comando invalido");
 			}
